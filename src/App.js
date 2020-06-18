@@ -12,22 +12,30 @@ class App extends Component {
       {
         id: nextId(),
         title: "Sweet Victory",
-        completed: false,
+        status: true,
       },
       {
         id: nextId(),
         title: "One Sixteen ",
-        completed: false,
+        status: true,
       },
     ],
   };
+  addSongs = (title) => {
+    const newSong = {
+      id: nextId(),
+      title,
+      status: true
+    }
+    this.setState({ songs: [...this.state.songs, newSong] });
+  }
 
   render() {
     return (
       <div>
         <Header />
         <div className="container">
-          <AddSongs />
+          <AddSongs addSongs={this.addSongs}/>
           <Songs songs={this.state.songs} />
         </div>
       </div>
