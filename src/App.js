@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import AddSongs from "./components/AddSongs";
 import Header from "./components/layout/Header";
 import Songs from "./components/Songs";
 import FavsList from "./components/FavsList";
+import { Container, Button } from "@material-ui/core";
 
 import nextId from "react-id-generator";
 import "./App.css";
@@ -59,16 +60,19 @@ class App extends Component {
 
   //Clear History
   clearHistory = () => {
-    this.setState ({
-      songs: []
-    })
-  }
+    this.setState({
+      songs: [],
+    });
+  };
 
+  //Play count
+  
   render() {
     return (
       <div>
         <Header />
-        <div className="container">
+
+        <Container fixed>
           <div>
             <div className="col">
               <AddSongs addSongs={this.addSongs} />
@@ -78,10 +82,12 @@ class App extends Component {
                 addFavs={this.addFavs}
                 removeSong={this.removeSong}
                 songs={this.state.songs}
+                playIcon={this.playIcon}
               />
-              <button style={btnClr} onClick={this.clearHistory}>Clear History</button>
+              <Button variant="contained" color="default" style={btnClr} onClick={this.clearHistory}>
+                Clear History
+              </Button>
             </div>
-            
           </div>
           <p></p>
           <div className="col">
@@ -90,7 +96,7 @@ class App extends Component {
               <FavsList fav={fav} />
             ))}
           </div>
-        </div>
+        </Container>
       </div>
     );
   }
@@ -102,6 +108,6 @@ const btnClr = {
   padding: "3px 7px",
   cursor: "pointer",
   float: "right",
-  margin: '2px'
-}
+  margin: "2px",
+};
 export default App;

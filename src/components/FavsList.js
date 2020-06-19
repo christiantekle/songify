@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-
+import { Grid, Paper, CardContent } from '@material-ui/core'
 class FavsList extends Component {
   render() {
-    return <div style={favsList}>
+    return <CardContent>
+    
         { this.props.fav.title }
-
-    </div>;
+    
+    </CardContent>;
   }
 }
 
