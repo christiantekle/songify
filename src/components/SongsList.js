@@ -22,9 +22,10 @@ class SongsList extends Component {
                 Add to Favorite
             </button>
             </p>
-         
+           
                     
       </div>
+   
     );
   }
 }
@@ -42,6 +43,7 @@ const btnFav = {
   padding: "3px 7px",
   cursor: "pointer",
   float: "right",
+  margin:'2px'
 };
 const btn = {
   background: "#f00",
@@ -50,5 +52,7 @@ const btn = {
   padding: "3px 7px",
   cursor: "pointer",
   float: "right",
+  margin: '2px'
 };
+
 export default SongsList;

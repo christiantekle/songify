@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AddSongs from "./components/AddSongs";
 import Header from "./components/layout/Header";
 import Songs from "./components/Songs";
-import FavsList from "./components/FavsList"
+import FavsList from "./components/FavsList";
 
 import nextId from "react-id-generator";
 import "./App.css";
@@ -24,10 +24,10 @@ class App extends Component {
     favs: [
       {
         id: 4,
-        title: 'The Good Life',
-        status: true
-      }
-    ]
+        title: "The Good Life",
+        status: true,
+      },
+    ],
   };
 
   //Add Song
@@ -42,11 +42,13 @@ class App extends Component {
 
   //Add to Favs
   addFavs = (title) => {
-    const newFav = this.state.songs.find((song) => { return song.title === title})
-   this.setState({
-     favs: [...this.state.favs, newFav]
-   });
-  } 
+    const newFav = this.state.songs.find((song) => {
+      return song.title === title;
+    });
+    this.setState({
+      favs: [...this.state.favs, newFav],
+    });
+  };
 
   //Remove Song
   removeSong = (id) => {
@@ -54,6 +56,13 @@ class App extends Component {
       songs: [...this.state.songs.filter((song) => song.id !== id)],
     });
   };
+
+  //Clear History
+  clearHistory = () => {
+    this.setState ({
+      songs: []
+    })
+  }
 
   render() {
     return (
@@ -65,22 +74,34 @@ class App extends Component {
               <AddSongs addSongs={this.addSongs} />
             </div>
             <div className="col">
-              <Songs addFavs={this.addFavs} removeSong={this.removeSong} songs={this.state.songs} />
+              <Songs
+                addFavs={this.addFavs}
+                removeSong={this.removeSong}
+                songs={this.state.songs}
+              />
+              <button style={btnClr} onClick={this.clearHistory}>Clear History</button>
             </div>
+            
           </div>
           <p></p>
           <div className="col">
             <h3>Favorites</h3>
             {this.state.favs.map((fav) => (
-              <FavsList fav={fav}/>
+              <FavsList fav={fav} />
             ))}
-          
           </div>
-        
         </div>
       </div>
     );
   }
 }
-
+const btnClr = {
+  background: "#ccc",
+  color: "#fff",
+  border: "none",
+  padding: "3px 7px",
+  cursor: "pointer",
+  float: "right",
+  margin: '2px'
+}
 export default App;
