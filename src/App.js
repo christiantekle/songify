@@ -71,6 +71,13 @@ class App extends Component {
       favs: [...this.state.favs.filter((fav) => fav.id !==id)]
     });
   };
+
+  //ClearFavHistory
+  clearFavHistory = () => {
+    this.setState({
+      favs: []
+    });
+  };
   
   render() {
     return (
@@ -98,8 +105,11 @@ class App extends Component {
           <div className="col">
           <h2>Favorites</h2>
            {this.state.favs.map((fav) => (
-              <FavsList removeFav={this.removeFav} fav={fav} />
+              <FavsList clearFavHistory={this.clearFavHistory} removeFav={this.removeFav} fav={fav} />
             ))}
+            <Button onClick={this.clearFavHistory} color="secondary">
+            Clear All Favorites
+          </Button>
           </div>
         </Container>
       </div>

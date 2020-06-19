@@ -3,14 +3,23 @@ import { Card, Button } from "@material-ui/core";
 class FavsList extends Component {
   render() {
     return (
-      <Card style={{maxWidth: '500px'}}>
+      <div>
+        <Card style={{ maxWidth: "500px" }}>
+          <div style={favsListStyle}>
+            {this.props.fav.title}
+            <Button
+              onClick={this.props.removeFav.bind(this, this.props.fav.id)}
+              variant="contained"
+              color="secondary"
+              style={{ float: "right" }}
+            >
+              Remove
+            </Button>
+          </div>
           
-        <div style={favsListStyle}>{this.props.fav.title}
-        <Button onClick={this.props.removeFav.bind(this, this.props.fav.id)} variant="contained" color="secondary" style={{ float:'right' }}>
-            Remove
-        </Button></div>
+        </Card>
         
-      </Card>
+      </div>
     );
   }
 }
@@ -21,7 +30,5 @@ const favsListStyle = {
   borderBottom: "1px #ccc dotted",
   flex: "5",
 };
-
-
 
 export default FavsList;
