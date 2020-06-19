@@ -9,11 +9,12 @@ class AddSongs extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     this.props.addSongs(this.state.title);
-    this.setState({ title: "" });
+    this.setState({ title: '' });
   };
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-  };
+      };
+
   render() {
     return (
       <form onSubmit={this.onSubmit} style={formStyle}>

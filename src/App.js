@@ -65,7 +65,12 @@ class App extends Component {
     });
   };
 
-  //Play count
+  //Remove Fav
+  removeFav = (id) => {
+    this.setState({
+      favs: [...this.state.favs.filter((fav) => fav.id !==id)]
+    });
+  };
   
   render() {
     return (
@@ -82,7 +87,7 @@ class App extends Component {
                 addFavs={this.addFavs}
                 removeSong={this.removeSong}
                 songs={this.state.songs}
-                playIcon={this.playIcon}
+                
               />
               <Button variant="contained" color="default" style={btnClr} onClick={this.clearHistory}>
                 Clear History
@@ -91,9 +96,9 @@ class App extends Component {
           </div>
           <p></p>
           <div className="col">
-            <h3>Favorites</h3>
-            {this.state.favs.map((fav) => (
-              <FavsList fav={fav} />
+          <h2>Favorites</h2>
+           {this.state.favs.map((fav) => (
+              <FavsList removeFav={this.removeFav} fav={fav} />
             ))}
           </div>
         </Container>

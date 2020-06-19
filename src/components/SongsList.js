@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Card, IconButton } from "@material-ui/core";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import DeleteIcon from '@material-ui/icons/Delete';
 
 class SongsList extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class SongsList extends Component {
       <Card style={songList}>
         <p>
           {this.props.song.title}
+          
           <IconButton aria-label="play/pause">
             <PlayArrowIcon
               onClick={() => this.setState({ count: this.state.count + 1 })}
@@ -26,7 +28,7 @@ class SongsList extends Component {
             color="secondary"
             style={{ float: "right", marginLeft: "5px" }}
             onClick={this.props.removeSong.bind(this, this.props.song.id)}
-          >
+          > <DeleteIcon />
             Remove
           </Button>
           <Button
