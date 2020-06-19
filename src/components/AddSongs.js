@@ -38,7 +38,6 @@ const formStyle = {
   
 };
 const btnStyle = {
-
      display:'inline-block',
      padding:'0.5em 3em',
      border:'0.16em solid #FFFFFF',
@@ -47,8 +46,7 @@ const btnStyle = {
      textDecoration:'none',
      fontWeight:'500',
      color:'#000',
-     textAlign:'center',
- 
+     textAlign:'center' 
 }
 
 export default AddSongs;
