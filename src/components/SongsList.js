@@ -22,7 +22,7 @@ class SongsList extends Component {
               onClick={() => this.setState({ count: this.state.count + 1 })}
             />
           </IconButton>
-          <h4>{this.state.count}</h4>
+          <h5>Play Count: {this.state.count}</h5>
           <Button
             variant="contained"
             color="secondary"
@@ -37,7 +37,7 @@ class SongsList extends Component {
             onClick={this.props.addFavs.bind(this, this.props.song.title)}
             style={{ float: "right" }}
           >
-            Add to Favorite
+            Favorite
           </Button>
         </p>
       </Card>
@@ -51,6 +51,8 @@ const songList = {
   borderBottom: "1px #ccc dotted",
   flex: "5",
   margin: "10px",
+  display: "inline-block",
+  minWidth: '31%'
 };
 
 export default SongsList;

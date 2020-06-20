@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import AddSongs from "./components/AddSongs";
 import Header from "./components/layout/Header";
 import Songs from "./components/Songs";
@@ -21,6 +21,11 @@ class App extends Component {
         title: "One Sixteen ",
         status: true,
       },
+      {
+        id: nextId(),
+        title: "Oceans (Where Feet May Fail)",
+        status: true,
+      }
     ],
     favs: [
       {
@@ -46,17 +51,15 @@ class App extends Component {
     const newFav = this.state.songs.find((song) => {
       return song.title === title;
     });
-    const favs = this.state.favs.map(fav => fav.title);
+    const favs = this.state.favs.map((fav) => fav.title);
 
-    if(favs.includes(newFav.title)) {
-      alert('Added!');
-    }
-    else {
+    if (favs.includes(newFav.title)) {
+      alert("Added");
+    } else {
       this.setState({
         favs: [...this.state.favs, newFav],
       });
     }
-    
   };
 
   //Remove Song
@@ -76,61 +79,79 @@ class App extends Component {
   //Remove Fav
   removeFav = (id) => {
     this.setState({
-      favs: [...this.state.favs.filter((fav) => fav.id !==id)]
+      favs: [...this.state.favs.filter((fav) => fav.id !== id)],
     });
   };
 
   //ClearFavHistory
   clearFavHistory = () => {
     this.setState({
-      favs: []
+      favs: [],
     });
   };
-  
+
   render() {
     return (
       <div>
         <Header />
 
         <Container fixed>
+          <div className="col">
+            <AddSongs addSongs={this.addSongs} />
+          </div>
           <div>
-            <div className="col">
-              <AddSongs addSongs={this.addSongs} />
-            </div>
-            <div className="col">
+            <h2>Songs List</h2>
+            <div style={col2}>
               <Songs
                 addFavs={this.addFavs}
                 removeSong={this.removeSong}
                 songs={this.state.songs}
-                
               />
-              <Button variant="contained" color="default" style={btnClr} onClick={this.clearHistory}>
-                Clear History
-              </Button>
             </div>
+            <Button
+              color="secondary"
+              style={{float: 'right'}}
+              onClick={this.clearHistory}
+            >
+              Clear History
+            </Button>
           </div>
+
           <p></p>
-          <div className="col">
-          <h2>Favorites</h2>
-           {this.state.favs.map((fav) => (
-              <FavsList clearFavHistory={this.clearFavHistory} removeFav={this.removeFav} fav={fav} />
+          <div style={favDiv}>
+            <div>
+            <h2>Favorites</h2>
+            {this.state.favs.map((fav) => (
+              <FavsList
+                clearFavHistory={this.clearFavHistory}
+                removeFav={this.removeFav}
+                fav={fav}
+              />
             ))}
-            <Button onClick={this.clearFavHistory} color="secondary">
-            Clear All Favorites
-          </Button>
-          </div>
+            </div>
+            </div>
+            <Button onClick={this.clearFavHistory} style={{float: 'right', marginTop: '-1vw'}}color="secondary">
+              Clear All Favorites
+            </Button>
+         
+         
         </Container>
       </div>
     );
   }
 }
-const btnClr = {
-  background: "#ccc",
-  color: "#fff",
-  border: "none",
-  padding: "3px 7px",
-  cursor: "pointer",
-  float: "right",
-  margin: "2px",
+const col2 = {
+  background: "#373737",
+  padding: "50px",
+  display: "inline-block",
+  width:'100%'
 };
+const favDiv = {
+  background: "#d3d3d3",
+  width: "100%",
+  minHeight: "5vw",
+  padding: "15px",
+  margin: "25px 0px",
+  display: "inline-block"
+}
 export default App;
