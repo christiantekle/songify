@@ -46,9 +46,17 @@ class App extends Component {
     const newFav = this.state.songs.find((song) => {
       return song.title === title;
     });
-    this.setState({
-      favs: [...this.state.favs, newFav],
-    });
+    const favs = this.state.favs.map(fav => fav.title);
+
+    if(favs.includes(newFav.title)) {
+      alert('Added!');
+    }
+    else {
+      this.setState({
+        favs: [...this.state.favs, newFav],
+      });
+    }
+    
   };
 
   //Remove Song
